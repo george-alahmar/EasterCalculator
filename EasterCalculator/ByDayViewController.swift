@@ -17,6 +17,9 @@ class ByDayViewController: UIViewController {
     @IBOutlet weak var dayCaptionLabel: UILabel!
     @IBOutlet weak var lordFeastLabel: UILabel!
     
+    @IBOutlet weak var statusImageView: UIImageView!
+    
+    
     private var datePicker:UIDatePicker?
     
     override func viewDidLoad() {
@@ -132,6 +135,19 @@ class ByDayViewController: UIViewController {
             statusLabel.text = EasterHelper.getFast(easter: orthodoxEaster, inputDate: date!)
             
             
+            // display image
+            switch statusLabel.text {
+            case "Strict Fast","Fast":
+                statusImageView.image = UIImage(named: "fast")
+            case "Fast/Dairy and Eggs Allowed":
+                 statusImageView.image = UIImage(named: "cheese")
+            case "Fast/Fish Allowed":
+                 statusImageView.image = UIImage(named: "fish")
+            case "Fast/Wine and Oil Allowed":
+                 statusImageView.image = UIImage(named: "wine")
+            default:
+                 statusImageView.image = nil
+            }
             
             
         }

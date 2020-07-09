@@ -550,11 +550,11 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vjx-zd-G6T" userLabel="ToneSV">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vjx-zd-G6T" userLabel="ToneSV">
                                 <rect key="frame" x="60" y="413" width="294" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfn-nx-63K">
-                                        <rect key="frame" x="0.0" y="0.0" width="137" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="50"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -567,11 +567,11 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LdS-At-lbQ" userLabel="Period">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LdS-At-lbQ" userLabel="Period">
                                 <rect key="frame" x="60" y="483" width="294" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQ5-0d-6zB">
-                                        <rect key="frame" x="0.0" y="0.0" width="137" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="56" height="50"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -590,6 +590,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B1v-Nv-msu" userLabel="StatusImageView">
+                                <rect key="frame" x="112" y="628" width="174" height="81"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -603,6 +606,8 @@
                             <constraint firstItem="dY7-c1-hql" firstAttribute="trailing" secondItem="VUm-Tb-BVI" secondAttribute="trailing" constant="60" id="Mn5-52-EKY"/>
                             <constraint firstItem="vjx-zd-G6T" firstAttribute="leading" secondItem="dY7-c1-hql" secondAttribute="leading" constant="60" id="Oxn-ap-yew"/>
                             <constraint firstItem="1oa-xf-eB4" firstAttribute="centerX" secondItem="QuF-qH-Bpu" secondAttribute="centerX" id="Pse-8u-bLK"/>
+                            <constraint firstItem="B1v-Nv-msu" firstAttribute="centerX" secondItem="QuF-qH-Bpu" secondAttribute="centerX" id="RXV-U2-RFo"/>
+                            <constraint firstItem="B1v-Nv-msu" firstAttribute="top" secondItem="1oa-xf-eB4" secondAttribute="bottom" constant="10" id="VqL-2d-hdA"/>
                             <constraint firstAttribute="trailing" secondItem="p3C-Hc-dSR" secondAttribute="trailing" id="a7L-Go-K0g"/>
                             <constraint firstItem="B6a-ZZ-MJA" firstAttribute="leading" secondItem="dY7-c1-hql" secondAttribute="leading" constant="60" id="hRE-JL-Dk4"/>
                             <constraint firstItem="dY7-c1-hql" firstAttribute="trailing" secondItem="LdS-At-lbQ" secondAttribute="trailing" constant="60" id="iQk-Z9-yt5"/>
@@ -621,13 +626,14 @@
                         <outlet property="dayNameLabel" destination="6UR-JR-FWz" id="RwL-e9-IGj"/>
                         <outlet property="lordFeastLabel" destination="11Z-Xt-yII" id="gyz-LF-VYF"/>
                         <outlet property="periodLabel" destination="Ie6-YX-qQi" id="tkg-OT-WaF"/>
+                        <outlet property="statusImageView" destination="B1v-Nv-msu" id="Dfo-xs-Hlk"/>
                         <outlet property="statusLabel" destination="1oa-xf-eB4" id="Lfe-V3-3Sf"/>
                         <outlet property="toneLabel" destination="VTU-Cr-dOz" id="hVI-As-xI4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hkJ-Al-TKu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1128" y="434"/>
+            <point key="canvasLocation" x="1127.536231884058" y="433.92857142857139"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Dlx-as-BwG">

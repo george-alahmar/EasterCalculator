@@ -308,8 +308,168 @@ final class EasterHelper{
         }
     }
     
+    
     private static func chechNonFastingPeriod(easter:Date,inputDate:Date)->String{
-        return ""
+        let components = Calendar.current.dateComponents([.year], from: inputDate)
+        let year = components.year!
+        let weekDay = Calendar.current.dateComponents([.weekday], from: inputDate).weekday
+        var result = ""
+        
+        if inputDate.isEqualTo(targetDate: "\(year)-8-29".toDate()){
+            if (weekDay == 1){
+                result =  ""
+            }
+            else{
+                result = "Strict Fast"
+            }
+        }
+        else if inputDate.isEqualTo(targetDate: "\(year)-1-5".toDate()) || inputDate.isEqualTo(targetDate: "\(year)-9-14".toDate()){
+            result = "Strict Fast"
+        }
+        else if (inputDate > easter.AddDays(days: -56)) && (inputDate < easter.AddDays(days: -48)) {
+            result = "Fast/Dairy and Eggs Allowed"
+        }
+        else if ((weekDay == 4) || (weekDay == 6)){
+            if (inputDate.isEqualTo(targetDate: "\(year)-1-6".toDate())) ||
+                ((inputDate >= "\(year)-12-25".toDate()) && (inputDate <= "\(year)-12-31".toDate())) ||
+                ((inputDate >= "\(year)-1-1".toDate()) && (inputDate < "\(year)-1-5".toDate())) ||
+                ((inputDate > easter.AddDays(days: -70)) && (inputDate < easter.AddDays(days: -63))) ||
+                (inputDate.isEqualTo(targetDate: easter.AddDays(days: 3))) ||
+                (inputDate.isEqualTo(targetDate: easter.AddDays(days: 5))) ||
+                (inputDate.isEqualTo(targetDate: easter.AddDays(days: 52))) ||
+                (inputDate.isEqualTo(targetDate: easter.AddDays(days: 54))) {
+                result =  ""
+            }
+            else if (inputDate.isEqualTo(targetDate: "\(year)-2-2".toDate())) ||
+                (inputDate.isEqualTo(targetDate: "\(year)-6-29".toDate())) ||
+                (inputDate.isEqualTo(targetDate: "\(year)-9-8".toDate())) ||
+                (inputDate.isEqualTo(targetDate: "\(year)-8-15".toDate())) ||
+                (inputDate.isEqualTo(targetDate: "\(year)-1-7".toDate())) ||
+                ((inputDate > easter.AddDays(days: 7)) && (inputDate < easter.AddDays(days: 49))) ||
+                ((inputDate > "\(year)-1-6".toDate()) && (inputDate <= "\(year)-1-14".toDate())) ||
+                ((inputDate > "\(year)-2-2".toDate()) && (inputDate <= "\(year)-2-9".toDate())) ||
+                ((inputDate > "\(year)-8-15".toDate()) && (inputDate <= "\(year)-8-23".toDate())) ||
+                ((inputDate > "\(year)-9-8".toDate()) && (inputDate <= "\(year)-9-12".toDate())) ||
+                ((inputDate > "\(year)-9-14".toDate()) && (inputDate <= "\(year)-9-21".toDate())) {
+                result = "Fast/Fish Allowed"
+            }
+            else
+            {
+                result = "Strict Fast"
+            }
+        }
+        else{
+            result = ""
+        }
+        
+        if (result == "Strict Fast") && (!( (inputDate >= easter.AddDays(days: -6)) && (inputDate >= easter.AddDays(days: -1)) )){
+            result = "Fast" + checkTwelveAppostols(easter: easter, inputDate: inputDate)
+        }
+        
+        
+        if ((result == "Strict Fast") || (result == "Fast")) &&  (!( (inputDate >= easter.AddDays(days: -6)) && (inputDate >= easter.AddDays(days: -1)) )){
+            result = "Fast" + checkWineAndOil(easter: easter, inputDate: inputDate)
+        }
+        
+        return result
     }
+    
+    
+    private static func checkTwelveAppostols(easter:Date,inputDate:Date)->String{
+        let components = Calendar.current.dateComponents([.year], from: inputDate)
+        let year = components.year!
+        if (inputDate.isEqualTo(targetDate: "\(year)-4-30".toDate())) ||
+            (inputDate.isEqualTo(targetDate: "\(year)-5-8".toDate())) ||
+            (inputDate.isEqualTo(targetDate: "\(year)-5-10".toDate())) ||
+            (inputDate.isEqualTo(targetDate: "\(year)-6-11".toDate())) ||
+            (inputDate.isEqualTo(targetDate: "\(year)-6-19".toDate())) ||
+            (inputDate.isEqualTo(targetDate: "\(year)-8-9".toDate())) ||
+            (inputDate.isEqualTo(targetDate: "\(year)-8-25".toDate())) ||
+            (inputDate.isEqualTo(targetDate: "\(year)-9-26".toDate())) ||
+            (inputDate.isEqualTo(targetDate: "\(year)-10-6".toDate())) ||
+            (inputDate.isEqualTo(targetDate: "\(year)-10-9".toDate())) ||
+            (inputDate.isEqualTo(targetDate: "\(year)-11-14".toDate())) ||
+            (inputDate.isEqualTo(targetDate: "\(year)-11-16".toDate())) ||
+            (inputDate.isEqualTo(targetDate: "\(year)-11-30".toDate())) {
+            return "/Fish Allowed"
+        }
+        else{
+            return ""
+        }
+    }
+    
+    private static func checkWineAndOil(easter:Date,inputDate:Date)->String{
+        let components = Calendar.current.dateComponents([.year], from: inputDate)
+        let year = components.year!
+         if (inputDate.isEqualTo(targetDate: "\(year)-1-11".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-1-16".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-1-17".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-1-18".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-1-20".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-1-22".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-1-25".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-1-27".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-1-30".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-2-8".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-2-10".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-2-11".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-2-17".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-2-24".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-3-9".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-3-26".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-4-23".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-4-25".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-4-30".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-5-2".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-5-8".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-5-15".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-5-21".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-5-25".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-6-8".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-6-11".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-6-30".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-7-1".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-7-2".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-7-17".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-7-20".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-7-22".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-7-25".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-7-26".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-7-27".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-8-31".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-9-1".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-9-6".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-9-9".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-9-13".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-9-20".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-9-23".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-9-26".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-10-6".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-10-18".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-10-23".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-10-26".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-11-1".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-11-8".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-11-12".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-11-13".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-11-14".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-11-16".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-11-30".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-12-4".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-12-5".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-12-6".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-12-9".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-12-12".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-12-15".toDate())) ||
+        (inputDate.isEqualTo(targetDate: "\(year)-12-17".toDate())) ||
+            (inputDate.isEqualTo(targetDate: "\(year)-12-20".toDate())) {
+            return "/Wine and Oil Allowed"
+        }
+        else
+         {
+            return ""
+        }
+    }
+    
     
 }
